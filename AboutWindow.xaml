@@ -1,0 +1,68 @@
+﻿<Window x:Class="UniUdTirocini.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Chi Sono" Height="450" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <Border CornerRadius="20" Background="White" Margin="20" Effect="{DynamicResource MaterialDesignShadowDepth4}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Button Style="{StaticResource MaterialDesignIconForegroundButton}" 
+                    HorizontalAlignment="Right" Margin="10"
+                    Click="BtnClose_Click" ToolTip="Chiudi">
+                <materialDesign:PackIcon Kind="Close" Foreground="Gray"/>
+            </Button>
+
+            <Ellipse Grid.Row="1" Width="110" Height="110" Margin="0,15,0,15" Effect="{DynamicResource MaterialDesignShadowDepth2}">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="pack://application:,,,/foto_profilo.jpg" Stretch="UniformToFill"/>
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0">
+                <TextBlock Text="Creato da Gianmarco Benedetti" FontSize="22" FontWeight="Bold" 
+                           HorizontalAlignment="Center" Foreground="#333"/>
+
+                <TextBlock Text="Studente di STM @ UniUD" FontSize="14" Foreground="Gray" 
+                           HorizontalAlignment="Center" Margin="0,5,0,0"/>
+
+                <TextBlock Text="Ho sviluppato questa applicazione per semplificare la ricerca dei tirocini per gli studenti." 
+                           TextWrapping="Wrap" TextAlignment="Center" Margin="0,15,0,0" Opacity="0.8"/>
+                <TextBlock Text="⚠️ App NON Ufficiale. Non affiliata con UniUD. I dati sono proprietà dell'ateneo. Uso a proprio rischio." 
+           FontSize="10" Foreground="Gray" TextWrapping="Wrap" TextAlignment="Center" 
+           Margin="10,20,10,10" Grid.Row="4" Height="36"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,30">
+
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" 
+                        ToolTip="Il mio LinkedIn"
+                        Background="#0077B5" BorderBrush="#0077B5"
+                        Click="BtnLinkedIn_Click" Margin="10">
+                    <materialDesign:PackIcon Kind="Linkedin" Width="24" Height="24" Foreground="White"/>
+                </Button>
+
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" 
+                        ToolTip="Il mio GitHub"
+                        Background="#333" BorderBrush="#333"
+                        Click="BtnGitHub_Click" Margin="10">
+                    <materialDesign:PackIcon Kind="Github" Width="24" Height="24" Foreground="White"/>
+                </Button>
+                    
+                
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
