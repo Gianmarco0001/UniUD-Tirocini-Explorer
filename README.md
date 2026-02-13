@@ -3,8 +3,6 @@ Ho creato questo software per semplificare la visualizzazione del file Excel rel
 
 # 🎓 UniUD Tirocini Explorer
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Platform](https://img.shields.io/badge/platform-Windows-blue) ![License](https://img.shields.io/badge/license-MIT-green)
-
 > **Basta file Excel illeggibili.** Esplora le convenzioni di tirocinio dell'Università di Udine con un'interfaccia moderna, veloce e funzionale.
 
 ---
@@ -61,3 +59,5 @@ L'app trasforma quei dati in una **Dashboard Interattiva** che permette di filtr
 ## 📄 Licenza
 
 Questo progetto è distribuito sotto licenza **MIT**. Sentiti libero di usarlo, modificarlo e distribuirlo.
+
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Platform](https://img.shields.io/badge/platform-Windows-blue) ![License](https://img.shields.io/badge/license-MIT-green)
