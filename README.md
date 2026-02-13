@@ -61,3 +61,15 @@ L'app trasforma quei dati in una **Dashboard Interattiva** che permette di filtr
 Questo progetto è distribuito sotto licenza **MIT**. Sentiti libero di usarlo, modificarlo e distribuirlo.
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Platform](https://img.shields.io/badge/platform-Windows-blue) ![License](https://img.shields.io/badge/license-MIT-green)
+
+## DISCLAIMER
+
+DISCLAIMER (IMPORTANTE)
+
+Questa applicazione è un progetto studentesco NON UFFICIALE.
+
+   Affiliazione: Questo software non è sviluppato, approvato o gestito dall'Università degli Studi di Udine. È un progetto open source creato da uno studente per utilità personale e condivisa.
+
+   Dati: I dati visualizzati provengono dai file Excel pubblici/distribuiti dall'ateneo. L'applicazione si limita a rielaborarli graficamente. Lo sviluppatore non è responsabile per eventuali errori, omissioni o dati non aggiornati presenti nei file originali o causati dalla conversione.
+
+   Responsabilità: Il software è fornito "così com'è", senza garanzie di alcun tipo. Utilizzalo a tuo rischio. Per informazioni ufficiali e vincolanti, fare sempre riferimento al portale ufficiale di UniUD o alla segreteria.
