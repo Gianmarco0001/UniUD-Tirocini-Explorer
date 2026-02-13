@@ -50,6 +50,14 @@ L'app trasforma quei dati in una **Dashboard Interattiva** che permette di filtr
 3.  Al primo avvio, ti verrà chiesto di caricare il file delle aziende. Seleziona il file `.xlsx` o `.csv` scaricato dall'università.
 4.  Fatto! I dati verranno salvati localmente per gli accessi futuri.
 
+## 🔧 Sviluppo
+
+Se vuoi compilare il progetto da zero:
+
+1.  Clona la repository:
+2.  Apri la soluzione `UniUdTirocini.sln` con **Visual Studio**.
+3.  Assicurati di avere i pacchetti NuGet installati (dovrebbe farlo VS in automatico).
+4.  Premi `F5` per avviare il debug.
 
 ## 👤 Autore
 
