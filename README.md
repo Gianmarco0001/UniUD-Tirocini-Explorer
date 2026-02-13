@@ -9,7 +9,7 @@ Ho creato questo software per semplificare la visualizzazione del file Excel rel
 
 ## 🖼️ Anteprima Software
 
-![2-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/ddb1d383-ea08-4543-88aa-2175c969d081)
+![1-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/4505476e-571d-458d-ab04-17aefb84f2f6)
 
 
 ## 🚀 Che cos'è?
