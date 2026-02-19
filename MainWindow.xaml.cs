@@ -27,7 +27,6 @@ namespace UniUdTirocini
             CaricaDatabase();
         }
 
-        // --- 1. CARICAMENTO DATI ---
         private void CaricaDatabase()
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DB_FILENAME);
@@ -53,10 +52,7 @@ namespace UniUdTirocini
                     _database = csv.GetRecords<Azienda>().ToList();
                 }
 
-                // Carica i cuoricini salvati
                 CaricaPreferitiDaFile();
-
-                // Aggiorna vista
                 FiltraDati(null, null);
             }
             catch (Exception ex)
@@ -65,7 +61,6 @@ namespace UniUdTirocini
             }
         }
 
-        // --- 2. LOGICA PREFERITI ---
         private void CaricaPreferitiDaFile()
         {
             string favPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FAV_FILENAME);
@@ -96,7 +91,6 @@ namespace UniUdTirocini
                 az.IsFavorite = !az.IsFavorite;
                 SalvaPreferitiSuFile();
 
-                // Se siamo in modalità "Solo Preferiti", aggiorniamo la lista per rimuovere chi non lo è più
                 if (TogFav.IsChecked == true && !az.IsFavorite)
                 {
                     FiltraDati(null, null);
@@ -104,7 +98,6 @@ namespace UniUdTirocini
             }
         }
 
-        // --- 3. FILTRI ---
         private void FiltraDati(object sender, RoutedEventArgs e)
         {
             if (_database == null) return;
@@ -125,6 +118,7 @@ namespace UniUdTirocini
                 bool matchText = string.IsNullOrEmpty(query) ||
                                  (x.Nome?.ToLower().Contains(query) ?? false) ||
                                  (x.Citta?.ToLower().Contains(query) ?? false) ||
+                                 (x.Indirizzo?.ToLower().Contains(query) ?? false) ||
                                  (x.Settore?.ToLower().Contains(query) ?? false);
 
                 if (!matchText) return false;
@@ -141,7 +135,6 @@ namespace UniUdTirocini
             ListAziende.ItemsSource = risultati;
         }
 
-        // --- 4. IMPORTAZIONE ---
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -182,11 +175,10 @@ namespace UniUdTirocini
 
                 using (var sw = new StreamWriter(dest, false, Encoding.UTF8))
                 {
-                    // Cerca l'intestazione vera (dove c'è scritto "AZIENDA") saltando le prime righe vuote
                     int headerIndex = 0;
                     for (int i = 0; i < Math.Min(10, table.Rows.Count); i++)
                     {
-                        var cellVal = table.Rows[i][2]?.ToString() ?? ""; 
+                        var cellVal = table.Rows[i][2]?.ToString() ?? "";
                         if (cellVal.ToUpper().Contains("AZIENDA"))
                         {
                             headerIndex = i;
@@ -194,13 +186,11 @@ namespace UniUdTirocini
                         }
                     }
 
-                    // Scrive righe
                     for (int i = headerIndex; i < table.Rows.Count; i++)
                     {
                         var items = table.Rows[i].ItemArray.Select(obj =>
                         {
                             string txt = obj?.ToString() ?? "";
-                            // Escape per CSV (virgolette e virgole)
                             if (txt.Contains(",") || txt.Contains("\"") || txt.Contains("\n"))
                                 txt = "\"" + txt.Replace("\"", "\"\"") + "\"";
                             return txt;
@@ -211,7 +201,6 @@ namespace UniUdTirocini
             }
         }
 
-        // --- 5. LINK ESTERNI ---
         private void BtnWeb_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.CommandParameter is string url && !string.IsNullOrWhiteSpace(url))
@@ -225,14 +214,20 @@ namespace UniUdTirocini
         {
             if (sender is Button btn && btn.CommandParameter is string email && !string.IsNullOrWhiteSpace(email))
             {
-                try { Process.Start(new ProcessStartInfo($"mailto:{email}") { UseShellExecute = true }); } catch { }
+                try
+                {
+                    Clipboard.SetText(email);
+                    MessageBox.Show($"L'indirizzo email dell'azienda è:\n\n{email}\n\nL'indirizzo è stato copiato correttamente negli appunti e può essere incollato.", "Email Copiata", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch
+                {
+                    MessageBox.Show($"L'indirizzo email dell'azienda è:\n\n{email}", "Email Azienda");
+                }
             }
         }
 
-        // --- 6. ABOUT ---
         private void BtnAbout_Click(object sender, RoutedEventArgs e)
         {
-            // Apre la finestra About creata in precedenza
             var about = new AboutWindow();
             about.ShowDialog();
         }

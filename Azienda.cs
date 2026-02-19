@@ -6,15 +6,14 @@ namespace UniUdTirocini
 {
     public class Azienda : INotifyPropertyChanged
     {
-        // --- DATI DAL CSV ---
         [Name("AZIENDA")] public string? Nome { get; set; }
+        [Name("INDIRIZZO")] public string? Indirizzo { get; set; }
         [Name("LOCALITÀ")] public string? Citta { get; set; }
         [Name("PV")] public string? Provincia { get; set; }
         [Name("EMAIL")] public string? Email { get; set; }
         [Name("WEB")] public string? Web { get; set; }
         [Name("SETTORE")] public string? Settore { get; set; }
 
-        // --- FILTRI ---
         [Name("ING")] public string? _ing { get; set; }
         public bool IsIng => _ing?.ToLower().Trim() == "x";
 
@@ -30,11 +29,8 @@ namespace UniUdTirocini
         [Name("GIU")] public string? _giu { get; set; }
         public bool IsGiu => _giu?.ToLower().Trim() == "x";
 
-        // --- PROPRIETÀ EXTRA (NON NEL CSV) ---
-
-        // Preferiti
         private bool _isFavorite;
-        [Ignore] // Non cercarlo nel CSV
+        [Ignore]
         public bool IsFavorite
         {
             get => _isFavorite;
@@ -42,16 +38,14 @@ namespace UniUdTirocini
         }
 
         public string FavoriteIcon => IsFavorite ? "Heart" : "HeartOutline";
-        public string FavoriteColor => IsFavorite ? "#E91E63" : "Gray"; // Rosso se attivo, Grigio se no
+        public string FavoriteColor => IsFavorite ? "#E91E63" : "Gray";
 
-        // Mappe
-        public string GoogleMapsUrl => $"https://www.google.com/maps/search/?api=1&query={System.Uri.EscapeDataString($"{Nome} {Citta} {Provincia}")}";
+        public string GoogleMapsUrl => $"https://www.google.com/maps/search/?api=1&query={System.Uri.EscapeDataString($"{Indirizzo}, {Citta}, {Provincia}")}";
 
-        // UI Helpers
         public string Iniziale => string.IsNullOrEmpty(Nome) ? "?" : Nome.Substring(0, 1).ToUpper();
         public string LuogoCompleto => string.IsNullOrEmpty(Provincia) ? (Citta ?? "") : $"{Citta} ({Provincia})";
+        public string IndirizzoCompleto => string.IsNullOrEmpty(Indirizzo) ? LuogoCompleto : $"{Indirizzo}, {LuogoCompleto}";
 
-        // --- EVENTO PER AGGIORNARE LA GRAFICA ---
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? name = null)
         {
